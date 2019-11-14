@@ -5,26 +5,38 @@ import json
 import random
 
 
-class Hat():
-
-    __participants = [
+class Hat:
+    participants = [
         'Janet', 'Bill', 'Jennifer', 'Nathan', 'Julia', 'Sam', 'James', 'Teri'
     ]
 
-    __invalid_combos = {
-        'James': 'Teri',
-        'Teri': 'James',
-        'Janet': 'Bill',
-        'Bill': 'Janet',
-        'Julia': 'Sam',
-        'Sam': 'Julia',
-        'Nathan': 'Jennifer',
-        'Jennifer': 'Nathan'
-    }
-
     def __init__(self):
-        self.receivers = Hat.__participants.copy()
-        self.pickers = Hat.__participants.copy()
+        self.receivers = Hat.participants.copy()
+        self.pickers = Hat.participants.copy()
+
+        # Spouses don't get each other
+        self.spouse_combos = {
+            'James': 'Teri',
+            'Teri': 'James',
+            'Janet': 'Bill',
+            'Bill': 'Janet',
+            'Julia': 'Sam',
+            'Sam': 'Julia',
+            'Nathan': 'Jennifer',
+            'Jennifer': 'Nathan'
+        }
+
+        # Last year's picks
+        self.last_year_combos = {
+            'Nathan': 'Julia',
+            'Bill': 'Sam',
+            'Jennifer': 'James',
+            'Janet': 'Jennifer',
+            'Julia': 'Teri',
+            'Sam': 'Bill',
+            'James': 'Nathan',
+            'Teri': 'Janet'
+        }
         self.matches = {}
 
     def make_pick(self, picker):
@@ -37,7 +49,7 @@ class Hat():
             position = random.randint(0, len(self.receivers) - 1)
             pick = self.receivers[position]
             if pick != picker:
-                if Hat.__invalid_combos[picker] != pick:
+                if self.spouse_combos[picker] != pick and self.last_year_combos[picker] != pick:
                     self.receivers.remove(pick)
                     valid_pick = True
             attempts += 1
@@ -48,7 +60,8 @@ class Hat():
         for picker in self.pickers:
             receiver = self.make_pick(picker)
             if receiver is None:
-                print('We seem to have reached an impossible to resolve situation where ' + picker + ' has no valid choices in the hat')
+                print('We seem to have reached an impossible to resolve situation where {} has no valid '
+                      'choices in the hat'.format(picker))
 
             self.matches[picker] = receiver
 
