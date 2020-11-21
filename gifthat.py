@@ -28,40 +28,44 @@ class Hat:
 
         # Last year's picks
         self.last_year_combos = {
-            'Nathan': 'Julia',
-            'Bill': 'Sam',
-            'Jennifer': 'James',
-            'Janet': 'Jennifer',
-            'Julia': 'Teri',
-            'Sam': 'Bill',
-            'James': 'Nathan',
+            'Nathan': 'Sam',
+            'Bill': 'Jennifer',
+            'Jennifer': 'Bill',
+            'Janet': 'Teri',
+            'Julia': 'Nathan',
+            'Sam': 'James',
+            'James': 'Julia',
             'Teri': 'Janet'
         }
         self.matches = {}
 
-    def make_pick(self, picker):
+    def make_pick(self, picker: str):
         valid_pick = False
         pick = None
         position = 0
         attempts = 0
 
         while not valid_pick and attempts < 50:
-            position = random.randint(0, len(self.receivers) - 1)
-            pick = self.receivers[position]
+            position: int = random.randint(0, len(self.receivers) - 1)
+            pick: str = self.receivers[position]
             if pick != picker:
-                if self.spouse_combos[picker] != pick and self.last_year_combos[picker] != pick:
+                if self.spouse_combos.get(picker) != pick and self.last_year_combos.get(picker) != pick:
                     self.receivers.remove(pick)
                     valid_pick = True
             attempts += 1
 
-        return pick
+        if valid_pick:
+            return pick
+        else:
+            return None
 
     def make_picks(self):
         for picker in self.pickers:
             receiver = self.make_pick(picker)
             if receiver is None:
-                print('We seem to have reached an impossible to resolve situation where {} has no valid '
-                      'choices in the hat'.format(picker))
+                #print('We seem to have reached an impossible to resolve situation where {} has no valid '
+                #      'choices in the hat'.format(picker))
+                return None
 
             self.matches[picker] = receiver
 
@@ -78,18 +82,23 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     combos = {}
+    none_picks = 0
 
     for j in range(0, int(args.num_iterations)):
         hat = Hat()
-        result = str(hat.make_picks())
+        picks = hat.make_picks()
 
-        if result in combos:
-            num_matches = combos[result]
+        if picks is not None:
+            result = str(picks)
+            if result in combos:
+                num_matches = combos[result]
+            else:
+                num_matches = 0
+            num_matches += 1
+            combos[result] = num_matches
         else:
-            num_matches = 0
+            none_picks += 1
 
-        num_matches += 1
-        combos[result] = num_matches
 
     top_fit = 0
     final = None
@@ -98,10 +107,11 @@ if __name__ == '__main__':
             top_fit = v
             final = k
 
-    print(result)
-    result = result.replace('\'', '"')
-    final_results = json.loads(result, strict=True)
+    #print(result)
+    #result = result.replace('\'', '"')
+    final_results = json.loads(final.replace('\'', '"'), strict=True)
 
+    print('total none picks = {}'.format(none_picks))
     for k, v in final_results.items():
         print(k + ' will be buying for ' + v)
     print('This decision was based on ' + str(args.num_iterations) + ' attempts at drawing names out of a hat.  The result displayed occurred ' + str(top_fit) + ' times.')
