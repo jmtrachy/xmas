@@ -1,0 +1,53 @@
+{
+    "Bill": {
+        "James": 1,
+        "Jennifer": 1,
+        "Nathan": 1,
+        "Sam": 2,
+        "Teri": 1
+    },
+    "James": {
+        "Bill": 2,
+        "Janet": 1,
+        "Julia": 1,
+        "Nathan": 1,
+        "Sam": 1
+    },
+    "Janet": {
+        "James": 1,
+        "Jennifer": 1,
+        "Julia": 1,
+        "Nathan": 1,
+        "Teri": 2
+    },
+    "Jennifer": {
+        "Bill": 2,
+        "James": 1,
+        "Janet": 1,
+        "Julia": 1,
+        "Sam": 1
+    },
+    "Julia": {
+        "Jennifer": 2,
+        "Nathan": 1,
+        "Teri": 3
+    },
+    "Nathan": {
+        "Bill": 1,
+        "James": 1,
+        "Janet": 1,
+        "Julia": 1,
+        "Sam": 2
+    },
+    "Sam": {
+        "Bill": 1,
+        "James": 2,
+        "Janet": 1,
+        "Nathan": 2
+    },
+    "Teri": {
+        "Janet": 2,
+        "Jennifer": 2,
+        "Julia": 2
+    }
+}

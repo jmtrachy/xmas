@@ -3,6 +3,7 @@ __author__ = 'jamest'
 import argparse
 import json
 import random
+from typing import Optional
 
 
 class Hat:
@@ -28,18 +29,21 @@ class Hat:
 
         # Last year's picks
         self.last_year_combos = {
-            'Nathan': 'Sam',
-            'Bill': 'Jennifer',
-            'Jennifer': 'Bill',
-            'Janet': 'Teri',
-            'Julia': 'Nathan',
-            'Sam': 'James',
-            'James': 'Julia',
-            'Teri': 'Janet'
+            'Janet': 'James',
+            'Bill': 'Teri',
+            'Jennifer': 'Janet',
+            'Nathan': 'Bill',
+            'Julia': 'Jennifer',
+            'Sam': 'Nathan',
+            'James': 'Sam',
+            'Teri': 'Julia'
         }
+
+        # Shuffle the pickers
+        random.shuffle(self.pickers)
         self.matches = {}
 
-    def make_pick(self, picker: str):
+    def make_pick(self, picker: str) -> Optional[str]:
         valid_pick = False
         pick = None
         position = 0
@@ -78,7 +82,8 @@ class Hat:
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Gathering arguments')
-    parser.add_argument('-n', required=True, dest='num_iterations', action='store', help='The number of iterations to run')
+    parser.add_argument('-n', required=True, dest='num_iterations', action='store',
+                        help='The number of iterations to run')
     args = parser.parse_args()
 
     combos = {}
@@ -98,7 +103,6 @@ if __name__ == '__main__':
             combos[result] = num_matches
         else:
             none_picks += 1
-
 
     top_fit = 0
     final = None
