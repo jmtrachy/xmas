@@ -58,5 +58,15 @@
     "Sam": "Janet",
     "Nathan": "Sam",
     "Bill": "James"
+  },
+  "2022": {
+    "James": "Nathan",
+    "Julia": "James",
+    "Bill": "Jennifer",
+    "Nathan": "Bill",
+    "Sam": "Teri",
+    "Teri": "Julia",
+    "Jennifer": "Janet",
+    "Janet": "Sam"
   }
 }

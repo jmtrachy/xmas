@@ -1,7 +1,7 @@
 {
     "Bill": {
         "James": 1,
-        "Jennifer": 1,
+        "Jennifer": 2,
         "Nathan": 1,
         "Sam": 2,
         "Teri": 1
@@ -10,7 +10,7 @@
         "Bill": 2,
         "Janet": 1,
         "Julia": 1,
-        "Nathan": 1,
+        "Nathan": 2,
         "Sam": 1
     },
     "Janet": {
@@ -18,22 +18,24 @@
         "Jennifer": 1,
         "Julia": 1,
         "Nathan": 1,
+        "Sam": 1,
         "Teri": 2
     },
     "Jennifer": {
         "Bill": 2,
         "James": 1,
-        "Janet": 1,
+        "Janet": 2,
         "Julia": 1,
         "Sam": 1
     },
     "Julia": {
+        "James": 1,
         "Jennifer": 2,
         "Nathan": 1,
         "Teri": 3
     },
     "Nathan": {
-        "Bill": 1,
+        "Bill": 2,
         "James": 1,
         "Janet": 1,
         "Julia": 1,
@@ -43,11 +45,12 @@
         "Bill": 1,
         "James": 2,
         "Janet": 1,
-        "Nathan": 2
+        "Nathan": 2,
+        "Teri": 1
     },
     "Teri": {
         "Janet": 2,
         "Jennifer": 2,
-        "Julia": 2
+        "Julia": 3
     }
 }

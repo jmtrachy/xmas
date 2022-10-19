@@ -29,14 +29,14 @@ class Hat:
 
         # Last year's picks
         self.last_year_combos = {
-            'Janet': 'James',
-            'Bill': 'Teri',
-            'Jennifer': 'Janet',
-            'Nathan': 'Bill',
-            'Julia': 'Jennifer',
-            'Sam': 'Nathan',
-            'James': 'Sam',
-            'Teri': 'Julia'
+            'Janet': 'Nathan',
+            'Bill': 'James',
+            'Jennifer': 'Julia',
+            'Nathan': 'Sam',
+            'Julia': 'Teri',
+            'Sam': 'Janet',
+            'James': 'Bill',
+            'Teri': 'Jennifer'
         }
 
         # Shuffle the pickers
