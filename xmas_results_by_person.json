@@ -3,11 +3,11 @@
         "James": 1,
         "Jennifer": 2,
         "Nathan": 1,
-        "Sam": 2,
+        "Sam": 3,
         "Teri": 1
     },
     "James": {
-        "Bill": 2,
+        "Bill": 3,
         "Janet": 1,
         "Julia": 1,
         "Nathan": 2,
@@ -15,7 +15,7 @@
     },
     "Janet": {
         "James": 1,
-        "Jennifer": 1,
+        "Jennifer": 2,
         "Julia": 1,
         "Nathan": 1,
         "Sam": 1,
@@ -26,10 +26,12 @@
         "James": 1,
         "Janet": 2,
         "Julia": 1,
-        "Sam": 1
+        "Sam": 1,
+        "Teri": 1
     },
     "Julia": {
         "James": 1,
+        "Janet": 1,
         "Jennifer": 2,
         "Nathan": 1,
         "Teri": 3
@@ -38,12 +40,12 @@
         "Bill": 2,
         "James": 1,
         "Janet": 1,
-        "Julia": 1,
+        "Julia": 2,
         "Sam": 2
     },
     "Sam": {
         "Bill": 1,
-        "James": 2,
+        "James": 3,
         "Janet": 1,
         "Nathan": 2,
         "Teri": 1
@@ -51,6 +53,7 @@
     "Teri": {
         "Janet": 2,
         "Jennifer": 2,
-        "Julia": 3
+        "Julia": 3,
+        "Nathan": 1
     }
 }

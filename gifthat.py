@@ -8,7 +8,7 @@ from typing import Optional
 
 class Hat:
     participants = [
-        'Janet', 'Bill', 'Jennifer', 'Nathan', 'Julia', 'Sam', 'James', 'Teri'
+        'Teri', 'Janet', 'Bill', 'Jennifer', 'Nathan', 'Julia', 'Sam', 'James'
     ]
 
     def __init__(self):
@@ -29,14 +29,14 @@ class Hat:
 
         # Last year's picks
         self.last_year_combos = {
-            'Janet': 'Nathan',
-            'Bill': 'James',
-            'Jennifer': 'Julia',
-            'Nathan': 'Sam',
-            'Julia': 'Teri',
-            'Sam': 'Janet',
-            'James': 'Bill',
-            'Teri': 'Jennifer'
+            'Janet': 'Sam',
+            'Bill': 'Jennifer',
+            'Jennifer': 'Janet',
+            'Nathan': 'Bill',
+            'Julia': 'James',
+            'Sam': 'Teri',
+            'James': 'Nathan',
+            'Teri': 'Julia'
         }
 
         # Shuffle the pickers
