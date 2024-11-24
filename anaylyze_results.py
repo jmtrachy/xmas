@@ -29,7 +29,7 @@ if __name__ == '__main__':
             picker_total[receiver] = picker_receiver_total
             results_to_person_map[picker] = picker_total
 
-    print('results = {}'.format(results_to_person_map))
+    print('results = {}'.format(json.dumps(results_to_person_map)))
 
     with open('xmas_results_by_person.json', 'w') as file:
         file.write(json.dumps(results_to_person_map, indent=4, sort_keys=True))

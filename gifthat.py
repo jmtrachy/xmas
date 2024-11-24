@@ -3,17 +3,19 @@ __author__ = 'jamest'
 import argparse
 import json
 import random
-from typing import Optional
+from typing import Optional, Set, List
+
+participants: List = [
+    'Janet', 'Bill', 'Jennifer', 'Nathan', 'Julia', 'Sam', 'James', 'Teri',
+]
+random.shuffle(participants)
 
 
 class Hat:
-    participants = [
-        'Teri', 'Janet', 'Bill', 'Jennifer', 'Nathan', 'Julia', 'Sam', 'James'
-    ]
 
     def __init__(self):
-        self.receivers = Hat.participants.copy()
-        self.pickers = Hat.participants.copy()
+        self.receivers = participants.copy()
+        self.pickers = participants.copy()
 
         # Spouses don't get each other
         self.spouse_combos = {
@@ -24,23 +26,22 @@ class Hat:
             'Julia': 'Sam',
             'Sam': 'Julia',
             'Nathan': 'Jennifer',
-            'Jennifer': 'Nathan'
+            'Jennifer': 'Nathan',
         }
 
         # Last year's picks
         self.last_year_combos = {
-            'Janet': 'Sam',
-            'Bill': 'Jennifer',
-            'Jennifer': 'Janet',
-            'Nathan': 'Bill',
-            'Julia': 'James',
-            'Sam': 'Teri',
-            'James': 'Nathan',
-            'Teri': 'Julia'
+            'Janet': 'Jennifer',
+            'Bill': 'Sam',
+            'Jennifer': 'Teri',
+            'Nathan': 'Julia',
+            'Julia': 'Janet',
+            'Sam': 'James',
+            'James': 'Bill',
+            'Teri': 'Nathan',
         }
 
         # Shuffle the pickers
-        random.shuffle(self.pickers)
         self.matches = {}
 
     def make_pick(self, picker: str) -> Optional[str]:
@@ -106,6 +107,8 @@ if __name__ == '__main__':
 
     top_fit = 0
     final = None
+    for k, v in combos.items():
+        print(v, k)
     for k, v in combos.items():
         if v > top_fit:
             top_fit = v
