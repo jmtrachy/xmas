@@ -3,10 +3,10 @@ __author__ = 'jamest'
 import argparse
 import json
 import random
-from typing import Optional, Set, List
+from typing import Dict, Optional, Set, List
 
 participants: List = [
-    'Janet', 'Bill', 'Jennifer', 'Nathan', 'Julia', 'Sam', 'James', 'Teri',
+    'Janet', 'Bill', 'Jennifer', 'Nathan', 'Julia', 'Sam', 'James', 'Teri', 'Xavier'
 ]
 random.shuffle(participants)
 
@@ -18,27 +18,28 @@ class Hat:
         self.pickers = participants.copy()
 
         # Spouses don't get each other
-        self.spouse_combos = {
-            'James': 'Teri',
-            'Teri': 'James',
-            'Janet': 'Bill',
-            'Bill': 'Janet',
-            'Julia': 'Sam',
-            'Sam': 'Julia',
-            'Nathan': 'Jennifer',
-            'Jennifer': 'Nathan',
+        self.spouse_combos: Dict[str, Set[str]] = {
+            'James': {'Teri'},
+            'Teri': {'James'},
+            'Janet': {'Bill'},
+            'Bill': {'Janet'},
+            'Julia': {'Sam'},
+            'Sam': {'Julia'},
+            'Nathan': {'Jennifer'},
+            'Jennifer': {'Nathan'},
+            'Xavier': {'Nathan', 'Jennifer'},
         }
 
         # Last year's picks
         self.last_year_combos = {
-            'Janet': 'Jennifer',
-            'Bill': 'Sam',
-            'Jennifer': 'Teri',
-            'Nathan': 'Julia',
-            'Julia': 'Janet',
-            'Sam': 'James',
-            'James': 'Bill',
-            'Teri': 'Nathan',
+            'Janet': 'Teri',
+            'Bill': 'James',
+            'Jennifer': 'Julia',
+            'Nathan': 'Janet',
+            'Julia': 'Bill',
+            'Sam': 'Jennifer',
+            'James': 'Nathan',
+            'Teri': 'Sam',
         }
 
         # Shuffle the pickers
@@ -54,7 +55,7 @@ class Hat:
             position: int = random.randint(0, len(self.receivers) - 1)
             pick: str = self.receivers[position]
             if pick != picker:
-                if self.spouse_combos.get(picker) != pick and self.last_year_combos.get(picker) != pick:
+                if pick not in self.spouse_combos.get(picker) and self.last_year_combos.get(picker) != pick:
                     self.receivers.remove(pick)
                     valid_pick = True
             attempts += 1
@@ -66,16 +67,11 @@ class Hat:
 
     def make_picks(self):
         for picker in self.pickers:
-            receiver = self.make_pick(picker)
+            receiver: Optional[str] = self.make_pick(picker)
             if receiver is None:
-                #print('We seem to have reached an impossible to resolve situation where {} has no valid '
-                #      'choices in the hat'.format(picker))
                 return None
 
             self.matches[picker] = receiver
-
-        #for p, r in self.matches.items():
-        #    print(p + ' will be buying a gift for ' + r)
 
         return self.matches
 
@@ -114,11 +110,9 @@ if __name__ == '__main__':
             top_fit = v
             final = k
 
-    #print(result)
-    #result = result.replace('\'', '"')
     final_results = json.loads(final.replace('\'', '"'), strict=True)
 
     print('total none picks = {}'.format(none_picks))
     for k, v in final_results.items():
         print(k + ' will be buying for ' + v)
-    print('This decision was based on ' + str(args.num_iterations) + ' attempts at drawing names out of a hat.  The result displayed occurred ' + str(top_fit) + ' times.')
+    print(f'This decision was based on {args.num_iterations} attempts at drawing names out of a hat.  The result displayed occurred {top_fit} times.')
