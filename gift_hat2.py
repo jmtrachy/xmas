@@ -1,6 +1,6 @@
 from enum import Enum
 import random
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Set
 
 
 class Person(Enum):
@@ -42,9 +42,9 @@ last_year: Dict[Person, Person] = {
 
 def determine_legit_pairings(picker: Person) -> Set[Person]:
     return {
-        recipient
-        for recipient in Person
-        if recipient not in (relationships[picker] | {last_year[picker]} | {picker})
+        r
+        for r in Person
+        if r not in (relationships[picker] | {last_year[picker]} | {picker})
     }
 
 
