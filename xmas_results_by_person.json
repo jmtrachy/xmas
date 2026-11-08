@@ -2,61 +2,69 @@
     "Bill": {
         "James": 2,
         "Jennifer": 2,
+        "Julia": 1,
         "Nathan": 1,
         "Sam": 3,
-        "Teri": 1
+        "Teri": 2
     },
     "James": {
-        "Bill": 3,
+        "Bill": 4,
         "Janet": 1,
         "Julia": 1,
-        "Nathan": 3,
+        "Nathan": 4,
         "Sam": 1
     },
     "Janet": {
-        "James": 1,
+        "James": 2,
         "Jennifer": 2,
         "Julia": 1,
         "Nathan": 1,
         "Sam": 1,
-        "Teri": 3
+        "Teri": 3,
+        "Xavier": 1
     },
     "Jennifer": {
         "Bill": 2,
         "James": 1,
-        "Janet": 2,
+        "Janet": 3,
         "Julia": 2,
-        "Sam": 1,
+        "Sam": 2,
         "Teri": 1
     },
     "Julia": {
-        "Bill": 1,
+        "Bill": 2,
         "James": 1,
         "Janet": 1,
         "Jennifer": 2,
-        "Nathan": 1,
+        "Nathan": 2,
         "Teri": 3
     },
     "Nathan": {
         "Bill": 2,
-        "James": 1,
+        "James": 2,
         "Janet": 2,
         "Julia": 2,
-        "Sam": 2
+        "Sam": 2,
+        "Teri": 1
     },
     "Sam": {
         "Bill": 1,
         "James": 3,
-        "Janet": 1,
-        "Jennifer": 1,
+        "Janet": 2,
+        "Jennifer": 2,
         "Nathan": 2,
         "Teri": 1
     },
     "Teri": {
         "Janet": 2,
-        "Jennifer": 2,
+        "Jennifer": 3,
         "Julia": 3,
         "Nathan": 1,
+        "Sam": 1,
+        "Xavier": 1
+    },
+    "Xavier": {
+        "Julia": 1,
         "Sam": 1
     }
 }

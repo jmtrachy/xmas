@@ -1,4 +1,5 @@
 from enum import Enum
+import json
 import random
 from typing import Dict, List, Set
 
@@ -27,17 +28,19 @@ relationships: Dict[Person, Set[Person]] = {
     Person.JAMES: {Person.TERI},
 }
 
-last_year: Dict[Person, Person] = {
-    Person.JANET: Person.XAVIER,
-    Person.BILL: Person.TERI,
-    Person.JENNIFER: Person.SAM,
-    Person.JAMES: Person.BILL,
-    Person.NATHAN: Person.JAMES,
-    Person.JULIA: Person.NATHAN,
-    Person.SAM: Person.JANET,
-    Person.XAVIER: Person.JULIA,
-    Person.TERI: Person.JENNIFER,
-}
+
+def load_last_year() -> Dict[Person, Person]:
+    with open('xmas_results.json', 'r') as json_data:
+        results = json.load(json_data)
+
+    latest_year = max(results, key=int)
+    return {
+        Person(picker): Person(recipient)
+        for picker, recipient in results[latest_year].items()
+    }
+
+
+last_year: Dict[Person, Person] = load_last_year()
 
 
 def determine_legit_pairings(picker: Person) -> Set[Person]:
